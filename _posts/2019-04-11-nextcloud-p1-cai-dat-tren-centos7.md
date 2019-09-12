@@ -88,6 +88,17 @@ http://your_server_IP_address/
 
 ## Cài đặt MySQL(MariaDB)
 
+Bổ sung repo và update
+```sh 
+echo '[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.2/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
+
+yum update -y
+```
+
 Cài đặt
 ```sh 
 sudo yum install -y mariadb-server
@@ -113,7 +124,7 @@ sudo systemctl enable mariadb.service
 Tạo DB và user 
 ```sh 
 mysql
-CREATE DATABASE nextcloud;
+CREATE DATABASE nextcloud CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE USER 'nc_user'@'localhost' IDENTIFIED BY 'YOUR_PASSWORD_HERE';
 GRANT ALL PRIVILEGES ON nextcloud.* TO 'nc_user'@'localhost';
 FLUSH PRIVILEGES;
